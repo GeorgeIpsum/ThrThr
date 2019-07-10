@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
 import { RootStore, setupRootStore } from "./models/root-store";
 import { Provider } from 'mobx-react';
+import { StatefulNavigator } from './navigation';
+import { DEFAULT_NAVIGATION_CONFIG } from './navigation/navigation-config';
+import { BackButtonHandler } from './navigation/back-button-handler';
+import { contains } from 'ramda';
 
 interface AppState {
   rootStore?: RootStore
@@ -15,6 +18,10 @@ class App extends React.Component<{}, AppState> {
     });
   }
 
+  canExit(routeName: string) {
+    return contains(routeName, DEFAULT_NAVIGATION_CONFIG.exitRoutes);
+  }
+
   render() {
     const rootStore = this.state && this.state.rootStore;
 
@@ -26,7 +33,9 @@ class App extends React.Component<{}, AppState> {
 
     return (
       <Provider rootStore={rootStore} {...otherStores}>
-
+        <BackButtonHandler canExit={this.canExit}>
+          <StatefulNavigator />
+        </BackButtonHandler>
       </Provider>
     );
   }

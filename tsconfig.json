@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2016",
+    "jsx": "react-native",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true
+  },
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*"
+  ],
+  "include": [
+    "src",
+    "test"
+  ]
+}
