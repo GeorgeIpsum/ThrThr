@@ -41,6 +41,16 @@ buck-out/
 \.buckd/
 *.keystore
 
+# VS Code
+.vscode
+
+# Cocoapods
+ios/Pods
+
+
+# Bundle artifact
+*.jsbundle
+
 # fastlane
 #
 # It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
