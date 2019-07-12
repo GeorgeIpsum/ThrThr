@@ -60,3 +60,6 @@ buck-out/
 *.jsbundle
 
 index-test.js
+
+#environment variables
+.env
