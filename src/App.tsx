@@ -18,6 +18,7 @@ import {
   StatusBar,
 } from 'react-native';
 
+import { API } from './env';
 
 interface AppState {
   rootStore?: any
@@ -25,9 +26,11 @@ interface AppState {
 
 export class App extends React.Component<{}, AppState> {
   async componentDidMount() {
+    
   }
 
   render() {
+    const a = API;
     return (
       <Fragment>
         <StatusBar barStyle="dark-content" />
@@ -36,7 +39,7 @@ export class App extends React.Component<{}, AppState> {
             contentInsetAdjustmentBehavior="automatic"
             style={styles.scrollView}>
             <View style={styles.body}>
-              <Text>yellow</Text>
+              <Text>{a}</Text>
             </View>
           </ScrollView>
         </SafeAreaView>
