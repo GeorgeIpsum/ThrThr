@@ -30,6 +30,10 @@ build/
 local.properties
 *.iml
 
+# Visual Studio Code
+#
+.vscode/
+
 # node.js
 #
 node_modules/
@@ -40,16 +44,6 @@ yarn-error.log
 buck-out/
 \.buckd/
 *.keystore
-
-# VS Code
-.vscode
-
-# Cocoapods
-ios/Pods
-
-
-# Bundle artifact
-*.jsbundle
 
 # fastlane
 #
@@ -64,6 +58,3 @@ ios/Pods
 
 # Bundle artifact
 *.jsbundle
-
-# CocoaPods
-/ios/Pods/
