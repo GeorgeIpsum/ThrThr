@@ -8,69 +8,46 @@
  * @format
  */
 
-import React, {Fragment} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-
-import { API } from './env';
+import * as React from 'react';
+import { StatefulNavigator } from './navigation';
+import { RootStore, setupRootStore } from './models/root-store';
+import { Provider } from 'mobx-react';
+import { contains } from './utils/helpers';
+import { DEFAULT_NAVIGATION_CONFIG } from './navigation/navigation-config';
+import { BackButtonHandler } from './navigation/back-button-handler';
 
 interface AppState {
-  rootStore?: any
+  rootStore?: RootStore;
 };
 
 export class App extends React.Component<{}, AppState> {
   async componentDidMount() {
-    
+    this.setState({
+      rootStore: await setupRootStore(),
+    });
+  }
+
+  canExit(routeName: string) {
+    return contains(routeName, DEFAULT_NAVIGATION_CONFIG.exitRoutes);
   }
 
   render() {
-    const a = API;
+    const rootStore = this.state && this.state.rootStore;
+
+    if(!rootStore) {
+      return null;
+    }
+
+    const otherStores = {};
+
     return (
-      <Fragment>
-        <StatusBar barStyle="dark-content" />
-        <SafeAreaView>
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}>
-            <View style={styles.body}>
-              <Text>{a}</Text>
-            </View>
-          </ScrollView>
-        </SafeAreaView>
-      </Fragment>
+      <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
+        <BackButtonHandler canExit={this.canExit}>
+          <StatefulNavigator />
+        </BackButtonHandler>
+      </Provider>
     );
   }
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: "white",
-  },
-  body: {
-    backgroundColor: "white",
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
