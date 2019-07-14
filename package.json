@@ -11,7 +11,7 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.5.1",
     "mobx": "^5.11.0",
-    "mobx-react": "^6.1.1",
+    "mobx-react": "^5.4.3",
     "mobx-state-tree": "^3.14.0",
     "react": "16.8.6",
     "react-native": "0.60.3",
