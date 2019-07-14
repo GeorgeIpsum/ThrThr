@@ -9,3 +9,4 @@ get good
 * determine how to best handle backbuttonhandler/ address need for it
 * figure out networking via services/api
   * add apisauce? use plain axios? create your own wrapper? who knows
+* better handle screen dummy component preset styles

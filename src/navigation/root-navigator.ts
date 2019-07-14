@@ -1,12 +1,14 @@
-import { createAppContainer, createStackNavigator } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { TabNavigator } from './tab-navigator';
+import { LoginScreen } from '../screens/login-screen';
 
-const MainNavigator = createStackNavigator({
+const MainNavigator = createSwitchNavigator({
+  LoginScreen: {
+    screen: LoginScreen,
+  },
   TabNavigator : {
     screen: TabNavigator
   }
-},{
-  headerMode: 'none'
 });
 
 export const RootNavigator = createAppContainer(MainNavigator);
